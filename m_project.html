@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Food Delivery System in India | MyOnlineMeal.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" media="screen and (max-width: 1170px)" href="css/phone.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Bree+Serif&display=swap" rel="stylesheet">
+    <style>
+        /* Styling for the "Add to Cart" button */
+        #add-to-cart-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue color, you can customize */
+            color: #ffffff; /* White text color */
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #add-to-cart-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div id="logo">
+            <img src="logo.ico.ico" alt="MyOnlineMeal.com">
+        </div>
+        <ul>
+            <li class="item"><a href="#home">Home</a></li>
+            <li class="item"><a href="#services-container">Services</a></li>
+            <li class="item"><a href="#client-section">Our Clients</a></li>
+            <li class="item"><a href="#contact">Contact Us</a></li>
+        </ul>
+        <a id="add-to-cart-btn" href="#" onclick="addToCart()">Add to Cart</a>
+        <img class="loginimg" src="login.png">
+        <a class="redirection" href="login.html">Login</a>
+    </nav>
+
+    <!-- Rest of your existing HTML content -->
+
+    <script>
+        // Function to handle "Add to Cart" button click
+        function addToCart() {
+            // Example data (you can replace this with actual product data)
+            const product = {
+                id: '1',
+                name: 'Smoke That Bowl',
+                price: 299
+            };
+
+            // Retrieve cart items from local storage (if any)
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            // Check if the product is already in the cart
+            const existingItem = cartItems.find(item => item.id === product.id);
+
+            if (existingItem) {
+                // If the product is already in the cart, increase the quantity
+                existingItem.quantity += 1;
+            } else {
+                // Otherwise, add the product to the cart with quantity 1
+                cartItems.push({ ...product, quantity: 1 });
+            }
+
+            // Save updated cart items back to local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Optional: Provide feedback to the user (e.g., show a confirmation message)
+            alert('Item added to cart!');
+        }
+    </script>
+</body>
+
+</html>
